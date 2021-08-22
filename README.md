@@ -1,4 +1,5 @@
-## Hi there! I'm Gonzalo Jarjury 👋 
+[![MasterHead](https://media-exp1.licdn.com/dms/image/C5616AQFE0Yj0t0a6Bw/profile-displaybackgroundimage-shrink_350_1400/0/1517370111095?e=1635379200&v=beta&t=PXRsH8GVrW5Lopox5zPphG-EWho-miGHGfX3UkD7KvI)](https://github.com/DarkteK/)
+## Hi there! I'm Gonzalo Jarjury <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="30px">
 Welcome to my Profile!!!   ![Visitor](https://visitor-badge.laobi.icu/badge?page_id=DarkteK.repoName)
 
 - 🔭 I’m currently working as a Drupal Engineer.
@@ -10,7 +11,7 @@ I am a senior software engineer with almost 10 years of experience in Drupal and
 of PHP5, MySQL, Git, JavaScript, JQuery, VueJS, CSS, HTML5, OOP's Zend Framework, Wordpress, JIRA.
 
 ## Github Streaks
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=DarkteK&theme=dark" width="40%"  alt="Github Streaks">
+[![GitHub Streak](http://github-readme-streak-stats.herokuapp.com?user=DarkteK&theme=blue-green)](https://git.io/streak-stats)
 
 ## StackOverflow participation
 <a href="https://stackexchange.com/users/1865724"><img src="https://stackexchange.com/users/flair/1865724.png?theme=dark" width="208" height="58" alt="profile for DarkteK on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for DarkteK on Stack Exchange, a network of free, community-driven Q&amp;A sites"></a>
@@ -27,8 +28,21 @@ of PHP5, MySQL, Git, JavaScript, JQuery, VueJS, CSS, HTML5, OOP's Zend Framework
   <img alt="Drupal" src="https://img.shields.io/badge/-JIRA-blue?logo=jira&style=flat" />
 </p>
 
+## Projects
+<a href="https://github.com/DarkteK/d8-views-custom-filter">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=DarkteK&repo=d8-views-custom-filter&title_color=ffffff&text_color=c9cacc&icon_color=2bbc8a&bg_color=1d1f21" />
+</a>
+
+
+<a href="https://github.com/DarkteK/drupal-8-Custom-module-form">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=DarkteK&repo=drupal-8-Custom-module-form&title_color=ffffff&text_color=c9cacc&icon_color=2bbc8a&bg_color=1d1f21" />
+</a>    
+<br />
+
 ## Top Languages
- ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=DarkteK&layout=compact)
+<a href="https://github.com/MartinHeinz/MartinHeinz">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=MartinHeinz&hide=java,html,tex&title_color=ffffff&text_color=c9cacc&icon_color=2bbc8a&bg_color=1d1f21&langs_count=3" />
+</a>
 
 <!--
 **DarkteK/DarkteK** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
