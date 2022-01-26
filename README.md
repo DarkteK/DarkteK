@@ -40,9 +40,8 @@ of PHP5, MySQL, Git, JavaScript, JQuery, VueJS, CSS, HTML5, OOP's Zend Framework
 <br />
 
 ## Top Languages
-<a href="https://github.com/MartinHeinz/MartinHeinz">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=MartinHeinz&hide=java,html,tex&title_color=ffffff&text_color=c9cacc&icon_color=2bbc8a&bg_color=1d1f21&langs_count=3" />
-</a>
+<img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=MartinHeinz&hide=java,html,tex&title_color=ffffff&text_color=c9cacc&icon_color=2bbc8a&bg_color=1d1f21&langs_count=3" />
+
 
 <!--
 **DarkteK/DarkteK** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
