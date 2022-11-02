@@ -1,10 +1,9 @@
-[![MasterHead](https://media-exp1.licdn.com/dms/image/C5616AQFE0Yj0t0a6Bw/profile-displaybackgroundimage-shrink_350_1400/0/1517370111095?e=1635379200&v=beta&t=PXRsH8GVrW5Lopox5zPphG-EWho-miGHGfX3UkD7KvI)](https://github.com/DarkteK/)
 ## Hi there! I'm Gonzalo Jarjury <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="30px">
 Welcome to my Profile!!!   ![Visitor](https://visitor-badge.laobi.icu/badge?page_id=DarkteK.repoName)
 
 - 🔭 I’m currently working as a Drupal Engineer.
 - 🌱 I’m currently learning more about Drupal 9 FE.
-- 📫 How to reach me: <a href="mailto:gonzalo.estrada@outlook.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white" /></a> <a href="https://www.linkedin.com/in/gonzalo-jajury"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white" /></a> <a href="https://stackoverflow.com/users/2509472/pbk1303?tab=profile"><img alt="Stack Overflow" src="https://img.shields.io/badge/-Stack%20Overflow-FE7A16?style=flat&logo=stack-overflow&logoColor=white"></a>
+- 📫 How to reach me: <a href="mailto:gonzalo.estrada@outlook.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white" /></a> <a href="https://www.linkedin.com/in/gonzalo-jajury"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white" /></a> <a href="https://stackoverflow.com/users/1689353/darktek?tab=profile"><img alt="Stack Overflow" src="https://img.shields.io/badge/-Stack%20Overflow-FE7A16?style=flat&logo=stack-overflow&logoColor=white"></a>
 
 
 I am a senior software engineer with almost 10 years of experience in Drupal and a good knowledge
