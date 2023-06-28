@@ -3,7 +3,7 @@ Welcome to my Profile!!!   ![Visitor](https://visitor-badge.laobi.icu/badge?page
 
 - 🔭 I’m currently working as a Drupal Engineer.
 - 🌱 I’m currently learning more about Drupal 9 FE.
-- 📫 How to reach me: <a href="mailto:gonzalo.estrada@outlook.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white" /></a> <a href="https://www.linkedin.com/in/gonzalo-jajury"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white" /></a> <a href="https://stackoverflow.com/users/1689353/darktek?tab=profile"><img alt="Stack Overflow" src="https://img.shields.io/badge/-Stack%20Overflow-FE7A16?style=flat&logo=stack-overflow&logoColor=white"></a>
+- 📫 How to reach me: <a href="mailto:gonzalo.estrada@outlook.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white" /></a> <a target="_blank" href="https://www.linkedin.com/in/gonzalojajury"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white" /></a> <a href="https://stackoverflow.com/users/1689353/darktek?tab=profile"><img alt="Stack Overflow" src="https://img.shields.io/badge/-Stack%20Overflow-FE7A16?style=flat&logo=stack-overflow&logoColor=white"></a>
 
 
 I am a senior software engineer with almost 10 years of experience in Drupal and a good knowledge
