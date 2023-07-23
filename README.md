@@ -2,18 +2,20 @@
 Welcome to my Profile!!!   ![Visitor](https://visitor-badge.laobi.icu/badge?page_id=DarkteK.repoName)
 
 - 🔭 I’m currently working as a Drupal Engineer.
-- 🌱 I’m currently learning more about Drupal 9 FE.
-- 📫 How to reach me: <a href="mailto:gonzalo.estrada@outlook.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white" /></a> <a href="https://www.linkedin.com/in/gonzalo-jajury"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white" /></a> <a href="https://stackoverflow.com/users/1689353/darktek?tab=profile"><img alt="Stack Overflow" src="https://img.shields.io/badge/-Stack%20Overflow-FE7A16?style=flat&logo=stack-overflow&logoColor=white"></a>
+- 🌱 I’m currently learning more about Drupal 9/10 FE.
+- 📫 How to reach me: <a target="_blank" href="mailto:gonzalo.estrada@outlook.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white" /></a> <a target="_blank" href="https://www.linkedin.com/in/gonzalo-jajury"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white" /></a> <a target="_blank" href="https://stackoverflow.com/users/1689353/darktek?tab=profile"><img alt="Stack Overflow" src="https://img.shields.io/badge/-Stack%20Overflow-FE7A16?style=flat&logo=stack-overflow&logoColor=white"></a>
 
 
-I am a senior software engineer with almost 10 years of experience in Drupal and a good knowledge
-of PHP5, MySQL, Git, JavaScript, JQuery, VueJS, CSS, HTML5, OOP's Zend Framework, Wordpress, JIRA.
+I'm a senior software engineer with almost 11 years of experience in Drupal and a good knowledge
+of PHP (Symfony, Wordpress), MySQL, Git, JavaScript, JQuery, VueJS, CSS, HTML, Agile methodologies along with tools like JIRA.
 
 ## Github Streaks
 [![GitHub Streak](http://github-readme-streak-stats.herokuapp.com?user=DarkteK&theme=blue-green)](https://git.io/streak-stats)
 
 ## StackOverflow participation
-<a href="https://stackexchange.com/users/1865724"><img src="https://stackexchange.com/users/flair/1865724.png?theme=dark" width="208" height="58" alt="profile for DarkteK on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for DarkteK on Stack Exchange, a network of free, community-driven Q&amp;A sites"></a>
+<a target="_blank" href="https://stackexchange.com/users/1865724">
+    <img src="https://stackexchange.com/users/flair/1865724.png?theme=dark" width="208" height="58" alt="profile for DarkteK on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for DarkteK on Stack Exchange, a network of free, community-driven Q&amp;A sites">
+</a>
 
 ## Tech Stack
 <p>
