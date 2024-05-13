@@ -10,7 +10,7 @@ jobs:
     steps:
 
       - name: Get PR branch
-        uses: xt0rted/pull-request-comment-branch@v1
+        uses: xt0rted/pull-request-comment-branch@v2
         id: comment-branch
 
       - name: Set latest commit status as pending
@@ -20,10 +20,14 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           status: pending
 
-      - name: Checkout
+      - name: Checkout PR branch ${{ steps.comment-branch.outputs.head_ref }}
         uses: actions/checkout@v3
         with:
-          ref: ${{ steps.comment-branch.outputs.head_sha }}
+          ref: ${{ steps.comment-branch.outputs.head_ref }}
+
+      - name : Testing
+        run: git rev-parse --abbrev-ref HEAD
+        run: git rev-parse --verify HEAD
 
       - name: Trigger Workflow
         uses: actions/github-script@v6
