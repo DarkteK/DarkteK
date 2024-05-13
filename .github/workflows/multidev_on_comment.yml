@@ -12,6 +12,8 @@ jobs:
       - name: Get PR branch
         uses: xt0rted/pull-request-comment-branch@v1
         id: comment-branch
+        run: |
+          echo ${{ steps.comment-branch.outputs.head_sha }}
 
       - name: Set latest commit status as pending
         uses: myrotvorets/set-commit-status-action@master
@@ -23,7 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: ${{ steps.comment-branch.outputs.head_ref }}
+          ref: ${{ steps.comment-branch.outputs.head_sha }}
 
       - name: Trigger Workflow
         uses: actions/github-script@v6
