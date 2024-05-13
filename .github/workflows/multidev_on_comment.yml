@@ -25,9 +25,8 @@ jobs:
         with:
           ref: ${{ steps.comment-branch.outputs.head_ref }}
 
-      - name : Testing
-        run: git rev-parse --abbrev-ref HEAD
-        run: git rev-parse --verify HEAD
+      - run: git rev-parse --abbrev-ref HEAD
+      - run: git rev-parse --verify HEAD
 
       - name: Trigger Workflow
         uses: actions/github-script@v6
