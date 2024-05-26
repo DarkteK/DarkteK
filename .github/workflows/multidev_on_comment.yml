@@ -32,7 +32,7 @@ jobs:
         uses: rshop/trigger-workflow-action@v1
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repository: '${{ steps.comment-branch.outputs.head_ref }}
+          repository: ${{ steps.comment-branch.outputs.head_ref }}
           workflowId: 'polaris_branch_to_multidev.yml'
 
       - name: Trigger Workflow
