@@ -32,8 +32,9 @@ jobs:
         uses: rshop/trigger-workflow-action@v1
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repository: ${{ steps.comment-branch.outputs.head_ref }}
+          repository: DarkteK/DarkteK
           workflowId: 'polaris_branch_to_multidev.yml'
+          branch: ${{ steps.comment-branch.outputs.head_ref }}
 
       - name: Trigger Workflow
         uses: actions/github-script@v6
