@@ -17,7 +17,7 @@ jobs:
         uses: myrotvorets/set-commit-status-action@master
         with:
           sha: ${{ steps.comment-branch.outputs.head_sha }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
           status: pending
 
       - name: Checkout PR branch ${{ steps.comment-branch.outputs.head_ref }}
@@ -36,17 +36,6 @@ jobs:
           workflowId: 'polaris_branch_to_multidev.yml'
           branch: ${{ steps.comment-branch.outputs.head_ref }}
 
-      - name: Trigger Workflow
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'polaris_branch_to_multidev.yml',
-              ref: ${{ steps.comment-branch.outputs.head_ref }},
-            })
-
       - name: Deploy to Multidev
         run: |
           echo "Deploying..."
@@ -56,7 +45,7 @@ jobs:
         if: always()
         with:
           sha: ${{ steps.comment-branch.outputs.head_sha }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
           status: ${{ job.status }}
 
       - name: Add comment to PR
