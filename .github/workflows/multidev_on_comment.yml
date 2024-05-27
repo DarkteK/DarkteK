@@ -72,7 +72,7 @@ jobs:
         uses: chabroA/action-append-pr-description@master
         with:
           auth: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repo: ${{ github.event.repository.name }}
+          repo: DarkteK/${{ github.event.repository.name }}
           owner: ${{ github.repository_owner }}
           pr: ${{ steps.comment-branch.outputs.head_ref }}
           url: "https://my-url.test"
