@@ -32,7 +32,7 @@ jobs:
         uses: rshop/trigger-workflow-action@v1
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repository: DarkteK/DarkteK
+          repository: DarkteK/${{ github.event.repository.name }}
           workflowId: 'polaris_branch_to_multidev.yml'
           branch: ${{ steps.comment-branch.outputs.head_ref }}
 
@@ -74,6 +74,6 @@ jobs:
           auth: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           repo: ${{ github.event.repository.name }}
           owner: ${{ github.repository_owner }}
-          pr: ${{ github.event.number }}
+          pr: ${{ steps.comment-branch.outputs.head_ref }}
           url: "https://my-url.test"
           message: "My url :" 
