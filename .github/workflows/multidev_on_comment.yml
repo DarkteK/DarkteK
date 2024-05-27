@@ -39,11 +39,34 @@ jobs:
           workflowId: 'polaris_branch_to_multidev.yml'
           branch: ${{ steps.comment-branch.outputs.head_ref }}
 
-  invoke-workflow:
-    needs: [deploy]
-    uses: DarkteK/DarkteK/.github/workflows/multidev_on_comment_complete@${{ steps.comment-branch.outputs.head_ref }}
-    with:
-      JOB_STATUS: ${{ job.status }}
-      COMMIT_NUMBER: ${{ env.COMMIT_NUMBER }}
-    secrets:
-      token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
+      - name: workflow-expectant
+        uses: ScrumWorks/github-actions-workflow-expect@v1.0.3
+        with:
+          wait-interval: 10 # seconds
+          wait-max: 1800 # seconds
+          repo-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          ref: ${{ steps.comment-branch.outputs.head_ref }}
+            
+      - name: Set latest commit status as ${{ job.status }}
+        uses: myrotvorets/set-commit-status-action@master
+        if: always()
+        with:
+          sha: ${{ steps.comment-branch.outputs.head_sha }}
+          token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
+          status: ${{ job.status }}
+
+      - name: Add comment to PR
+        uses: actions/github-script@v6
+        if: always()
+        with:
+          script: |
+            const name = '${{ github.workflow }}';
+            const success = '${{ job.status }}' === 'success';
+            const body = `${name}: ${success ? 'succeeded ✅' : 'failed ❌'}\n$`;
+            
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            })
