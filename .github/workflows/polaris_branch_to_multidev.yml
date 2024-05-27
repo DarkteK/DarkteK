@@ -18,7 +18,7 @@ jobs:
 
         export GITHUB_ACTION_SKIP_BUILD=${{ inputs.skip_build_step }}
 
-        $git_hub_ref_name = trim(`printenv GITHUB_REF_NAME`);
+        $git_hub_ref_name = printenv GITHUB_REF_NAME;
         echo "Target Branch: $git_hub_ref_name\r\n";
 
         $ENV = $git_hub_ref_name;
