@@ -11,18 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
+    - uses: actions/checkout@v1
     - name: Multidev Builder
-      run: |
-        # Export options.
-
-        export GITHUB_ACTION_SKIP_BUILD=${{ inputs.skip_build_step }}
-
-        # Run the builder script.
-        echo "Calling the universal build script build_for_multidev_test.php" 
-        chmod 777 build_for_multidev_test.php
-        php build_for_multidev_test.php
-        echo "Finished running the universal build script." 
+      run: php -r "trim('printenv GITHUB_REF_NAME')"
 
     - name: done
       run: |
