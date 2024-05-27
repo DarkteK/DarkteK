@@ -1,7 +1,7 @@
 name: Multidev on comment completed
 on:
   workflow_run:
-    workflows: [1. sPolaris To Multidev]
+    workflows: ["1. Polaris To Multidev"]
     types: [completed]
 
 jobs:
