@@ -69,7 +69,7 @@ jobs:
             })
             
       - name: Update PR Description
-      - uses: riskledger/update-pr-description@dev
+        uses: riskledger/update-pr-description@dev
         with:
           body: ${{ description }} "Multidev url: https://${{ steps.comment-branch.outputs.head_ref }}-teachforamerica.pantheonsite.io/"
           appendContentOnMatchOnly: true
