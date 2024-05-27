@@ -1,4 +1,4 @@
-name: asd
+name: 1. Polaris To Multidev
 on:
   workflow_dispatch:
     inputs:
@@ -13,7 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Multidev Builder
+      run: |
+        echo "Done1"
 
     - name: done
       run: |
-        echo "Done"
+        echo "Done2"
