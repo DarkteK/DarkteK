@@ -68,9 +68,12 @@ jobs:
               body: body
             })
             
-      - name: Update PR Description
-        uses: riskledger/update-pr-description@dev
+      - name: Add deploy URL to PR description
+        uses: chabroA/action-append-pr-description@master
         with:
-          body: ${{ description }} "Multidev url: https://${{ steps.comment-branch.outputs.head_ref }}-teachforamerica.pantheonsite.io/"
-          appendContentOnMatchOnly: true
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          auth: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repo: ${{ github.event.repository.name }}
+          owner: ${{ github.repository_owner }}
+          pr: ${{ github.event.number }}
+          url: "https://my-url.test"
+          message: "My url :" 
