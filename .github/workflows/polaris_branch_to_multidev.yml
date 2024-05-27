@@ -18,10 +18,11 @@ jobs:
 
         export GITHUB_ACTION_SKIP_BUILD=${{ inputs.skip_build_step }}
 
-        $git_hub_ref_name = printenv GITHUB_REF_NAME;
-        echo "Target Branch: $git_hub_ref_name\r\n";
-
-        $ENV = $git_hub_ref_name;
+        # Run the builder script.
+        echo "Calling the universal build script scripts/tfa/build_for_multidev_test.php" 
+        chmod 777 scripts/tfa/build_for_multidev_test.php
+        php scripts/tfa/build_for_multidev_test.php
+        echo "Finished running the universal build script." 
 
     - name: done
       run: |
