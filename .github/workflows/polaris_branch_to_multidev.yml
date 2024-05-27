@@ -1,4 +1,4 @@
-name: 1. Polaris To Multidev
+name: Create Multidev
 on:
   workflow_dispatch:
     inputs:
@@ -11,55 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.PANTHEON_SSH_KEY }}
-        config: ${{ secrets.SSH_CONFIG }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
-
-    # Install Terminus.
-    - name: Install Terminus
-      uses: pantheon-systems/terminus-github-actions@main
-      with:
-        pantheon-machine-token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
-
-    - name: Install Terminus Build Tools
-      run: terminus self:plugin:install terminus-build-tools-plugin
-
-    # Check Terminus works.
-    - name: Update Ignore File.
-      run: terminus build:gitignore:cut
-
-    #- name: Use Node.js 14.
-      #uses: actions/setup-node@v3
-      #with:
-        #node-version: 14.19.0
-
-    # Cache vendor folder
-    - name: Cache vendor folder
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-vendor
-      with:
-        path: ./vendor
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/composer.lock') }}
 
     - name: Multidev Builder
-      env:
-        pantheon_repo: '${{ secrets.PANTHEON_REPO }}'
       run: |
         # Export options.
 
         export GITHUB_ACTION_SKIP_BUILD=${{ inputs.skip_build_step }}
 
-        # Setup for the pantheon repo.
-        git remote add pantheon $pantheon_repo
   
         # Run the builder script.
-        echo "Calling the universal build script scripts/tfa/build_for_multidev.php" 
-        #chmod 777 scripts/tfa/build_for_multidev.php
-        #php scripts/tfa/build_for_multidev.php
+        echo "Calling the universal build script scripts/tfa/build_for_multidev_test.php" 
+        chmod 777 scripts/tfa/build_for_multidev_test.php
+        php scripts/tfa/build_for_multidev_test.php
         echo "Finished running the universal build script." 
 
     - name: done
