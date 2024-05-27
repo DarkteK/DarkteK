@@ -45,7 +45,7 @@ jobs:
           wait-interval: 10 # seconds
           wait-max: 1800 # seconds
           repo-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          ref: ${{ steps.comment-branch.outputs.head_ref }}
+          ref: ${{ steps.comment-branch.outputs.head_sha }}
             
       - name: Set latest commit status as ${{ job.status }}
         uses: myrotvorets/set-commit-status-action@master
@@ -62,7 +62,7 @@ jobs:
           script: |
             const name = '${{ github.workflow }}';
             const success = '${{ job.status }}' === 'success';
-            const body = `${name}: ${success ? 'succeeded ✅' : 'failed ❌'}\n$`;
+            const body = `${name}: ${success ? 'succeeded ✅' : 'failed ❌'}\n`;
             
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
