@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Multidev Builder
-      run: php -r "trim('printenv GITHUB_REF_NAME')"
+      run: php -r "trim('printenv GITHUB_REF_NAME');"
 
     - name: done
       run: |
