@@ -69,8 +69,8 @@ jobs:
             })
             
       - name: Update PR Description
-        uses: nefrob/pr-description@v1.1.2
+      - uses: riskledger/update-pr-description@dev
         with:
-          content: "Multidev url: https://${{ steps.comment-branch.outputs.head_ref }}-teachforamerica.pantheonsite.io/"
+          body: ${{ description }} "Multidev url: https://${{ steps.comment-branch.outputs.head_ref }}-teachforamerica.pantheonsite.io/"
           appendContentOnMatchOnly: true
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
