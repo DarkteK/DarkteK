@@ -1,4 +1,4 @@
-name: 1. Polaris To Multidev
+name: Create Multidev
 on:
   workflow_dispatch:
     inputs:
