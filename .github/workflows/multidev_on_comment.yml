@@ -36,10 +36,6 @@ jobs:
           workflowId: 'polaris_branch_to_multidev.yml'
           branch: ${{ steps.comment-branch.outputs.head_ref }}
 
-      - name: Deploy to Multidev
-        run: |
-          echo "Deploying..."
-
       - name: Set latest commit status as ${{ job.status }}
         uses: myrotvorets/set-commit-status-action@master
         if: always()
