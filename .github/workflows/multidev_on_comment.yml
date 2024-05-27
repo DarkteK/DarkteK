@@ -19,7 +19,7 @@ jobs:
           JOB_STATUS: ${{ job.status }}
           COMMIT_NUMBER: ${{ steps.comment-branch.outputs.head_sha }}
         with:
-          sha: $COMMIT_NUMBER
+          sha: ${{ steps.comment-branch.outputs.head_sha }}
           token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
           status: pending
 
