@@ -44,6 +44,6 @@ jobs:
     uses: DarkteK/DarkteK/.github/workflows/multidev_on_comment_complete@${{ steps.comment-branch.outputs.head_ref }}
     with:
       JOB_STATUS: ${{ job.status }}
-      COMMIT_NUMBER: ${{ steps.comment-branch.outputs.head_sha }}
+      COMMIT_NUMBER: ${{ env.COMMIT_NUMBER }}
     secrets:
       token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
