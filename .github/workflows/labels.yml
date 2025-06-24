@@ -6,6 +6,8 @@ on:
 jobs:
   label-pr:
     runs-on: ubuntu-latest
+    outputs:
+      LABEL: ${{ steps.get-label.outputs.label }}
 
     steps:
       - name: Checkout repository
@@ -23,3 +25,15 @@ jobs:
               repo: context.repo.repo,
               labels: [label]
             });
+
+      - name: Obtain label from Pull Request
+        id: get-label
+        run: echo "label=$(jq -r '.pull_request.labels[0].name' $GITHUB_EVENT_PATH)" >> $GITHUB_OUTPUT
+
+      - name: Change label if previous label is 'documentation'
+        if: steps.get-label.outputs.label == 'documentation'
+        run: |
+          prNumber=${{ github.event.pull_request.number }}
+          newLabel='invalid'
+          echo "Changing label from 'documentation' to '$newLabel' for PR #$prNumber"
+          gh pr edit $prNumber --add-label $newLabel --remove-label documentation
