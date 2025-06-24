@@ -20,7 +20,7 @@ jobs:
           token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
           status: pending
 
-      - name: Checkout PR branch ${{ github.ref_name }}
+      - name: Checkout PR branch ${{ steps.comment-branch.outputs.head_ref }}
         uses: actions/checkout@v3
         with:
           ref: ${{ steps.comment-branch.outputs.head_ref }}
@@ -31,7 +31,7 @@ jobs:
       - name: Trigger workflow action
         uses: rshop/trigger-workflow-action@v1
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
           repository: ${{ github.repository }}
           workflowId: 'polaris_branch_to_multidev.yml'
           branch: ${{ steps.comment-branch.outputs.head_ref }}
@@ -39,9 +39,9 @@ jobs:
       - name: workflow-expectant
         uses: ScrumWorks/github-actions-workflow-expect@v1.0.3
         with:
-          wait-interval: 30 # seconds
+          wait-interval: 40 # seconds
           wait-max: 1800 # seconds
-          repo-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repo-token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
           ref: ${{ steps.comment-branch.outputs.head_sha }}
             
       - name: Set latest commit status as ${{ job.status }}
