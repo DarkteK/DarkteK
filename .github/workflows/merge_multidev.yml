@@ -1,0 +1,28 @@
+name: "2. Merge Multidev"
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.PANTHEON_SSH_KEY }}
+        config: ${{ secrets.SSH_CONFIG }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: Installing Terminus
+      uses: kopepasah/setup-pantheon-terminus@master
+      with:
+        pantheon-machine-token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
+    - name: deployer
+      env:
+        pantheon_repo: '${{ secrets.PANTHEON_REPO }}'
+        pantheon_site_name: '${{ secrets.PANTHEON_SITE_NAME }}'
+      run: |
+        BASE_BRANCH=${GITHUB_REF##*/}
+        BASE_BRANCH=${BASE_BRANCH:0:11}
+        echo running terminus multidev:merge-to-dev teachforamerica.$BASE_BRANCH  --updatedb --yes
+        terminus multidev:merge-to-dev teachforamerica.$BASE_BRANCH  --updatedb --yes
+        echo Merged Multidev $BASE_BRANCH into Development

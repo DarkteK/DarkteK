@@ -1,0 +1,21 @@
+name: 1. Polaris To Multidev
+on:
+  workflow_dispatch:
+    inputs:
+      skip_build_step:
+        type: boolean
+        description: Skip the build step
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Multidev Builder
+      run: |
+        echo "Done1"
+
+    - name: done
+      run: |
+        echo "Done2"
