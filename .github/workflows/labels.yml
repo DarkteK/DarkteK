@@ -16,7 +16,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Obtain label from Pull Request
+        id: get-label
+        run: echo "label=$(jq -r '.pull_request.labels[0].name' $GITHUB_EVENT_PATH)" >> $GITHUB_OUTPUT
+
       - name: Add label to PR
+        if: steps.get-label.outputs.label != 'documentation'
         uses: actions/github-script@v6
         with:
           script: |
@@ -28,10 +33,6 @@ jobs:
               repo: context.repo.repo,
               labels: [label]
             });
-
-      - name: Obtain label from Pull Request
-        id: get-label
-        run: echo "label=$(jq -r '.pull_request.labels[0].name' $GITHUB_EVENT_PATH)" >> $GITHUB_OUTPUT
 
       - name: Change label if previous label is 'documentation'
         if: steps.get-label.outputs.label == 'documentation'
