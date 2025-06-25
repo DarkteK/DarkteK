@@ -1,4 +1,7 @@
 name: PR Merged
+permissions:
+  pull-requests: write
+  issues: write
 on:
   pull_request:
     types: [opened, synchronize, reopened]
