@@ -8,7 +8,7 @@ jobs:
     steps:
 
       - uses: actions/checkout@v4
-      - name: Obtener títulos de PRs abiertos con la etiqueta "Ready For QA"
+      - name: Obtener nombres de ramas de PRs abiertos con etiquetas específicas
         id: fetch_labels
         uses: actions/github-script@v6
         with:
@@ -23,9 +23,9 @@ jobs:
             const filtered = prs.data.filter(pr =>
               pr.labels.some(label => allowedLabels.includes(label.name))
             );
-            const titles = filtered.map(pr => pr.title).join(', ');
-            core.info(`Labels fetched: ${titles}`);
-            core.setOutput('labels', titles);
+            const branchNames = filtered.map(pr => pr.head.ref).join(', ');
+            core.info(`Branches fetched: ${branchNames}`);
+            core.setOutput('branches', branchNames);
 
 #const filtered = prs.data.filter(pr =>
   #pr.labels.some(label => label.name === 'Ready For QA')
