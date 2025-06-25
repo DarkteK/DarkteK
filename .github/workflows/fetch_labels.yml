@@ -1,0 +1,27 @@
+name: "Fetch Labels"
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v4
+      - name: Obtener títulos de PRs abiertos con la etiqueta "Ready For QA"
+        id: fetch_labels
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prs = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100
+            });
+            const filtered = prs.data.filter(pr =>
+              pr.labels.some(label => label.name === 'Ready For QA')
+            );
+            const titles = filtered.map(pr => pr.title).join(', ');
+            core.info(`Labels fetched: ${titles}`);
+            core.setOutput('labels', titles);
