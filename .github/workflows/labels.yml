@@ -32,6 +32,8 @@ jobs:
 
       - name: Change label if previous label is 'documentation'
         if: steps.get-label.outputs.label == 'documentation'
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           prNumber=${{ github.event.pull_request.number }}
           newLabel='invalid'
