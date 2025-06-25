@@ -19,9 +19,14 @@ jobs:
               state: 'open',
               per_page: 100
             });
+            const allowedLabels = ['Ready For QA', 'documentation', 'invalid'];
             const filtered = prs.data.filter(pr =>
-              pr.labels.some(label => label.name === 'Ready For QA')
+              pr.labels.some(label => allowedLabels.includes(label.name))
             );
             const titles = filtered.map(pr => pr.title).join(', ');
             core.info(`Labels fetched: ${titles}`);
             core.setOutput('labels', titles);
+
+#const filtered = prs.data.filter(pr =>
+  #pr.labels.some(label => label.name === 'Ready For QA')
+   #                 );
