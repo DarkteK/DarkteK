@@ -1,11 +1,6 @@
 name: "Fetch Labels"
 on:
   workflow_dispatch:
-    inputs:
-      target_branch:
-        description: 'Rama destino a filtrar'
-        required: true
-        default: 'main'
 
 jobs:
   fetch-labels:
@@ -14,7 +9,7 @@ jobs:
       branches: ${{ steps.fetch_labels.outputs.branches }}
     steps:
       - name: Validar nombre de rama
-        if: startsWith(github.event.inputs.target_branch, 'ma') == false
+        if: startsWith(github.ref_name, 'mai') == false
         run: |
           echo "The branch name should start with 'development-s'."
           exit 1
@@ -27,7 +22,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const targetBranch = '${{ github.event.inputs.target_branch }}';
+            const targetBranch = process.env.GITHUB_REF_NAME;
             const prs = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -59,7 +54,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const targetBranch = '${{ github.event.inputs.target_branch }}';
+            const targetBranch = process.env.GITHUB_REF_NAME;
             const prs = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
