@@ -25,11 +25,11 @@ jobs:
               pr.labels.some(label => allowedLabels.includes(label.name))
             );
             const branchNames = filtered_pr.map(pr => pr.head.ref);
-            core.setOutput('branches', JSON.stringify(branchNames);
+            core.setOutput('branches', JSON.stringify(branchNames));
 
 #const filtered = prs.data.filter(pr =>
   #pr.labels.some(label => label.name === 'Ready For QA')
-   #                 );
+   # );
 
   process-branches:
     runs-on: ubuntu-latest
