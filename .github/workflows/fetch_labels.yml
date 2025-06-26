@@ -51,8 +51,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Mostrar branch del matrix
-        run:
-          echo "Branch actual: ${{ matrix.branch }}"
+        run: echo "Branch actual: ${{ matrix.branch }}"
 
       - name: Cambiar etiquetas en PRs de la rama
         uses: actions/github-script@v6
