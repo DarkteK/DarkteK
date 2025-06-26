@@ -1,6 +1,11 @@
 name: "Fetch Labels"
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: 'Rama destino a filtrar'
+        required: true
+        default: 'main'
 
 jobs:
   fetch-labels:
@@ -8,23 +13,32 @@ jobs:
     outputs:
       branches: ${{ steps.fetch_labels.outputs.branches }}
     steps:
+      - name: Validar nombre de rama
+        if: startsWith(github.event.inputs.target_branch, 'ma') == false
+        run: |
+          echo "The branch name should start with 'development-s'."
+          exit 1
 
-      - name: Obtener nombres de ramas de PRs abiertos con etiquetas específicas
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Obtener ramas de PRs mergeados a la rama elegida
         id: fetch_labels
         uses: actions/github-script@v6
         with:
           script: |
+            const targetBranch = '${{ github.event.inputs.target_branch }}';
             const prs = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              state: 'open',
+              state: 'closed',
               per_page: 100
             });
-            const allowedLabels = ['Ready For QA', 'documentation', 'invalid'];
-            const filtered_pr = prs.data.filter(pr =>
-              pr.labels.some(label => allowedLabels.includes(label.name))
+            const merged = prs.data.filter(pr =>
+              pr.merged_at &&
+              pr.base.ref === targetBranch
             );
-            const branchNames = filtered_pr.map(pr => pr.head.ref);
+            const branchNames = merged.map(pr => pr.head.ref);
             core.setOutput('branches', JSON.stringify(branchNames));
 
 #const filtered = prs.data.filter(pr =>
@@ -45,13 +59,18 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            const targetBranch = '${{ github.event.inputs.target_branch }}';
             const prs = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              state: 'open',
+              state: 'closed',
               per_page: 100
             });
-            const pr = prs.data.find(pr => pr.head.ref === '${{ matrix.branch }}');
+            const pr = prs.data.find(pr =>
+              pr.head.ref === '${{ matrix.branch }}' &&
+              pr.merged_at &&
+              pr.base.ref === targetBranch
+            );
             if (pr) {
               // Quitar la etiqueta 'documentation'
               await github.rest.issues.removeLabel({
