@@ -6,7 +6,7 @@ jobs:
   fetch-labels:
     runs-on: ubuntu-latest
     outputs:
-      JIRA_TICKET: ${{ steps.fetch_labels.outputs.branches }}
+      branches: ${{ steps.fetch_labels.outputs.branches }}
     steps:
 
       - name: Obtener nombres de ramas de PRs abiertos con etiquetas específicas
