@@ -3,11 +3,12 @@ on:
   workflow_dispatch
 
 jobs:
-  build:
+  fetch-labels:
     runs-on: ubuntu-latest
+    outputs:
+      JIRA_TICKET: ${{ steps.fetch_labels.outputs.branches }}
     steps:
 
-      - uses: actions/checkout@v4
       - name: Obtener nombres de ramas de PRs abiertos con etiquetas específicas
         id: fetch_labels
         uses: actions/github-script@v6
@@ -23,10 +24,47 @@ jobs:
             const filtered_pr = prs.data.filter(pr =>
               pr.labels.some(label => allowedLabels.includes(label.name))
             );
-            const branchNames = filtered_pr.map(pr => pr.head.ref).join(', ');
-            core.info(`Branches fetched: ${branchNames}`);
-            core.setOutput('branches', filtered_pr);
+            const branchNames = filtered_pr.map(pr => pr.head.ref);
+            core.setOutput('branches', JSON.stringify(branchNames);
 
 #const filtered = prs.data.filter(pr =>
   #pr.labels.some(label => label.name === 'Ready For QA')
    #                 );
+
+  process-branches:
+    runs-on: ubuntu-latest
+    needs: fetch-labels
+    strategy:
+      matrix:
+        branch: ${{ fromJson(needs.fetch-labels.outputs.branches) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cambiar etiquetas en PRs de la rama
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prs = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100
+            });
+            const pr = prs.data.find(pr => pr.head.ref === '${{ matrix.branch }}');
+            if (pr) {
+              // Quitar la etiqueta 'documentation'
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                name: 'documentation'
+              });
+              // Agregar la etiqueta 'invalid'
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                labels: ['invalid']
+              });
+            }
