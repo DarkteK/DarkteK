@@ -20,12 +20,12 @@ jobs:
               per_page: 100
             });
             const allowedLabels = ['Ready For QA', 'documentation', 'invalid'];
-            const filtered = prs.data.filter(pr =>
+            const filtered_pr = prs.data.filter(pr =>
               pr.labels.some(label => allowedLabels.includes(label.name))
             );
-            const branchNames = filtered.map(pr => pr.head.ref).join(', ');
+            const branchNames = filtered_pr.map(pr => pr.head.ref).join(', ');
             core.info(`Branches fetched: ${branchNames}`);
-            core.setOutput('branches', branchNames);
+            core.setOutput('branches', filtered_pr);
 
 #const filtered = prs.data.filter(pr =>
   #pr.labels.some(label => label.name === 'Ready For QA')
