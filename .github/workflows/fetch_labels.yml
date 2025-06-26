@@ -6,7 +6,7 @@ jobs:
   fetch-labels:
     runs-on: ubuntu-latest
     outputs:
-      branches: ${{ steps.fetch_labels.outputs.branches }}
+      prs: ${{ steps.fetch_labels.outputs.prs }}
     steps:
       - name: Validar nombre de rama
         if: startsWith(github.ref_name, 'mai') == false
@@ -17,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Obtener ramas de PRs mergeados a la rama elegida
+      - name: Obtener PRs mergeados a la rama elegida
         id: fetch_labels
         uses: actions/github-script@v6
         with:
@@ -33,10 +33,14 @@ jobs:
               pr.merged_at &&
               pr.base.ref === targetBranch
             );
-            const branchNames = merged.map(pr => pr.head.ref);
-            core.setOutput('branches', JSON.stringify(branchNames));
+            // Guardar número de PR y nombre de rama
+            const prData = merged.map(pr => ({
+              number: pr.number,
+              branch: pr.head.ref
+            }));
+            core.setOutput('prs', JSON.stringify(prData));
 
-#const filtered = prs.data.filter(pr =>
+    #const filtered = prs.data.filter(pr =>
   #pr.labels.some(label => label.name === 'Ready For QA')
    # );
 
@@ -45,50 +49,36 @@ jobs:
     needs: fetch-labels
     strategy:
       matrix:
-        branch: ${{ fromJson(needs.fetch-labels.outputs.branches) }}
+        pr: ${{ fromJson(needs.fetch-labels.outputs.prs) }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Mostrar branch del matrix
+      - name: Mostrar info del PR
         run: |
-          echo "Branch actual: ${{ matrix.branch }}"
+          echo "PR #: ${{ matrix.pr.number }}"
+          echo "Branch: ${{ matrix.pr.branch }}"
 
-      - name: Cambiar etiquetas en PRs de la rama
+      - name: Cambiar etiquetas en PR
         uses: actions/github-script@v6
         with:
           script: |
-            const targetBranch = process.env.GITHUB_REF_NAME;
-            console.log('targetBranch:', targetBranch);
+            const prNumber = ${{ matrix.pr.number }};
+            const branchName = '${{ matrix.pr.branch }}';
+            console.log('Procesando PR:', prNumber, 'Branch:', branchName);
 
-            const prs = await github.rest.pulls.list({
+            // Quitar la etiqueta 'documentation'
+            await github.rest.issues.removeLabel({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              state: 'closed',
-              per_page: 100
+              issue_number: prNumber,
+              name: 'documentation'
+            }).catch(() => {});
+
+            // Agregar la etiqueta 'invalid'
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              labels: ['invalid']
             });
-            console.log('Total PRs cerrados:', prs.data.length);
-
-            const pr = prs.data.find(pr =>
-              pr.head.ref === '${{ matrix.branch }}' &&
-              pr.merged_at &&
-              pr.base.ref === targetBranch
-            );
-            console.log('PR encontrado:', pr ? pr.number : 'Ninguno');
-
-            if (pr) {
-              // Quitar la etiqueta 'documentation'
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: pr.number,
-                name: 'documentation'
-              });
-              // Agregar la etiqueta 'invalid'
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: pr.number,
-                labels: ['invalid']
-              });
-            }
