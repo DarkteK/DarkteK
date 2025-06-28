@@ -8,12 +8,6 @@ jobs:
     outputs:
       prs: ${{ steps.fetch_labels.outputs.prs }}
     steps:
-      - name: Validar nombre de rama
-        if: startsWith(github.ref_name, 'mai') == false
-        run: |
-          echo "The branch name should start with 'development-s'."
-          exit 1
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -36,17 +30,19 @@ jobs:
             // Guardar número de PR y nombre de rama
             const prData = merged.map(pr => ({
               number: pr.number,
-              branch: pr.head.ref
+              branch: pr.head.ref.toUpperCase()
             }));
             core.setOutput('prs', JSON.stringify(prData));
 
-    #const filtered = prs.data.filter(pr =>
-  #pr.labels.some(label => label.name === 'Ready For QA')
+    # const filtered = prs.data.filter(pr =>
+      # pr.labels.some(label => label.name === 'Ready For QA')
    # );
 
   process-branches:
     runs-on: ubuntu-latest
     needs: fetch-labels
+    outputs:
+      JIRA_TICKET: ${{ steps.set-vars.outputs.jira_ticket }}
     strategy:
       matrix:
         pr: ${{ fromJson(needs.fetch-labels.outputs.prs) }}
